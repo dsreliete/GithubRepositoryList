@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Java Repository List from Github</string>
+    <string name="no_item">Não foi possível realizar o download dos itens</string>
+    <string name="network_msg">Sem Conexão com a internet. Estabeleça uma conexão e tente
+        novamente </string>
+</resources>
