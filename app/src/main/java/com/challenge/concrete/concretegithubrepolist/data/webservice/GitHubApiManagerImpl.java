@@ -35,7 +35,6 @@ public class GitHubApiManagerImpl implements GitHubApiManager {
 
         OkHttpClient okHTTPClient = new OkHttpClient
                 .Builder()
-                .cache(new Cache(new File(System.getProperty("java.io.tmpdir"), UUID.randomUUID().toString()), 8 * 1024 * 1024))
                 .addInterceptor(logging)
                 .readTimeout(10, TimeUnit.SECONDS)
                 .connectTimeout(5, TimeUnit.SECONDS)
