@@ -21,6 +21,6 @@ public interface GitHubApi {
 
     @GET("repos/{owner}/{repository}/pulls")
     Call<List<PullRequest>> getPullRequestList(@Path("owner") String owner,
-                                              @Path("repository") String repo);
+                                               @Path("repository") String repo);
 
 }

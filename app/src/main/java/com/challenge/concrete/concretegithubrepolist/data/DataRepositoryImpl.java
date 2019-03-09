@@ -1,7 +1,5 @@
 package com.challenge.concrete.concretegithubrepolist.data;
 
-import android.os.Handler;
-
 import com.challenge.concrete.concretegithubrepolist.data.model.Model;
 import com.challenge.concrete.concretegithubrepolist.data.model.PullRequest;
 import com.challenge.concrete.concretegithubrepolist.data.model.Repository;
@@ -43,25 +41,13 @@ public class DataRepositoryImpl implements DataRepository{
             public void onResponse(Call<Model> call, Response<Model> response) {
                 if (response.isSuccessful()){
                     repoList = response.body().repositoryList;
-                    returnRepoList(repoList, listener);
-                }else{
-                    returnRepoList(repoList, listener);
                 }
+                listener.onFinishedList(repoList);
             }
 
             @Override
             public void onFailure(Call<Model> call, Throwable t) {
-                returnRepoList(repoList, listener);
-            }
-        });
-    }
-
-    public void returnRepoList(final List<Repository> list,
-                               final getRepoListOnFinishedListener listener) {
-        handler = new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                listener.onFinishedList(list);
+                listener.onFinishedList(repoList);
             }
         });
     }
@@ -74,29 +60,17 @@ public class DataRepositoryImpl implements DataRepository{
             public void onResponse(Call<List<PullRequest>> call, Response<List<PullRequest>> response) {
                 if (response.isSuccessful()) {
                     pullList = response.body();
-                    returnPullList(pullList, listener);
-                }else{
-                    returnPullList(pullList, listener);
+
                 }
+                listener.onFinishedList(pullList);
             }
 
             @Override
             public void onFailure(Call<List<PullRequest>>call, Throwable t) {
-                returnPullList(pullList, listener);
+                listener.onFinishedList(pullList);
 
             }
         });
 
     }
-
-    public void returnPullList(final List<PullRequest> list,
-                               final getPullListOnFinishedListener listener){
-        handler = new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                listener.onFinishedList(list);
-            }
-        });
-    }
-
 }
